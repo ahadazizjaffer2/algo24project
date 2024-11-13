@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integer Multiplication</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Basic Body Styling */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+
+      /* Container for the content */
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Header Styling */
+      h1 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #5d2f8e;
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      input[type="file"] {
+        font-size: 1rem;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      button {
+        background-color: #5d2f8e;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #3e1e5f;
+      }
+
+      /* Steps and Result Containers */
+      .steps-container {
+        margin-top: 40px;
+      }
+
+      .step {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        color: #444;
+      }
+
+      .step.b {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      /*.step.u {
+        text-decoration: underline;
+        color: #3498db;
+      }*/
+
+      .u {
+        text-decoration: underline;
+        color: #3498db;
+      }
+
+      .result-container {
+        margin-top: 30px;
+        padding: 20px;
+        font-weight: bold;
+        background-color: #e9f7fc;
+        border-left: 5px solid #3498db;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+      pre {
+        font-family: inherit; /* Inherit the font from the parent, so it doesn't change */
+        font-size: 1.1rem; /* Same font size as body */
+        white-space: pre-wrap; /* Ensure text wraps if needed */
+        word-wrap: break-word; /* Helps prevent long words from overflowing */
+        line-height: 1.6; /* Optional: adjust line height to match the rest of the page */
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        input[type="file"] {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Integer Multiplication using Karatsuba Algorithm</h1>
+      <form action="" method="post" enctype="multipart/form-data">
+        <label for="input_file"
+          >Upload an input file (with two integers on a single line):</label
+        >
+        <input type="file" name="input_file" id="input_file" required />
+        <button type="submit">Run Algorithm</button>
+      </form>
+
+      {% if steps %}
+      <div class="steps-container" id="steps-container"></div>
+      <div class="result-container">{{ result }}</div>
+      {% endif %}
+    </div>
+
+    <script>
+      const steps = {{ steps | tojson }};
+      const stepsContainer = document.getElementById("steps-container");
+
+      steps.forEach((step) => {
+        const stepElement = document.createElement("div");
+        stepElement.classList.add("step");
+
+        const preElement = document.createElement("pre");
+
+        const leadingSpaces = step.match(/^\s*/)[0];
+        const text = step.trim();
+
+        const tempstep = text;
+
+        if (step.startsWith("Starting Karatsuba multiplication")) {
+          preElement.innerHTML = leadingSpaces + step;
+          stepElement.classList.add("b");
+        }
+
+        else if (tempstep.startsWith("Returning product")) {
+          preElement.innerHTML = leadingSpaces + `<span class="u">${text}</span>`;
+        }
+        else {
+          preElement.innerText = leadingSpaces + step;
+        }
+
+        stepElement.appendChild(preElement);
+        stepsContainer.appendChild(stepElement);
+      });
+    </script>
+  </body>
+</html>
