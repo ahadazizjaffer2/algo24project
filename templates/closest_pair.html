@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Closest Pair Algorithm</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Basic Body Styling */
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+
+      /* Container for the content */
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Header Styling */
+      h1 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #5d2f8e;
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      input[type="file"] {
+        font-size: 1rem;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      button {
+        background-color: #5d2f8e;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #3e1e5f;
+      }
+
+      /* Steps and Result Containers */
+      .steps-container {
+        margin-top: 40px;
+      }
+
+      .step {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        color: #444;
+      }
+
+      .step.b {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      .step.u {
+        text-decoration: underline;
+        color: #3498db;
+      }
+
+      .result-container {
+        margin-top: 30px;
+        padding: 20px;
+        font-weight: bold;
+        background-color: #e9f7fc;
+        border-left: 5px solid #3498db;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        input[type="file"] {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Closest Pair of Points</h1>
+      <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="input_file" required />
+        <button type="submit">Run Algorithm</button>
+      </form>
+
+      {% if steps %}
+      <h2>Steps:</h2>
+      <div id="steps-container" class="steps-container"></div>
+      <div id="result-container" class="result-container">
+      {% endif %}
+    </div>
+
+    <script>
+      // Sample data for testing, replace with actual server data in production
+      const steps = {{ steps | tojson }};
+      const result = "{{ result }}";
+
+      const stepsContainer = document.getElementById("steps-container");
+      const resultContainer = document.getElementById("result-container");
+
+      // Populate steps
+      steps.forEach((step) => {
+        const stepElement = document.createElement("div");
+        stepElement.classList.add("step");
+        if (
+          step.startsWith("Sorted all points") ||
+          step.startsWith("Dividing points at")
+        ) {
+          stepElement.innerHTML = step;
+          stepElement.classList.add("b");
+        } else if (step.startsWith("Closest pair in")) {
+          stepElement.innerHTML = step;
+          stepElement.classList.add("u");
+        } else if (step.startsWith("image")) {
+          const img = document.createElement("img");
+          const match = step.match(/(?:image\s)(\S+\.\w{3,4})/);
+          const filename = match[1];
+          img.src = "../static/output_images/" + filename;
+          img.style.width = "600px";
+          
+          stepElement.appendChild(img);
+          //img.src = {{ url_for('static', filename='output_images/{filename}') }}
+        } else {
+          stepElement.innerText = step;
+        }
+        stepsContainer.appendChild(stepElement);
+      });
+
+      // Populate result
+      resultContainer.innerText = result;
+    </script>
+  </body>
+</html>
