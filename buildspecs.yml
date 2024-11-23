@@ -2,18 +2,17 @@ version: 0.2
 
 env:
   variables:
-    # Define environment variables here (optional)
     FLASK_APP: app.py
     FLASK_ENV: development
 
 phases:
   install:
     runtime-versions:
-      python: 3.8  # You can change this to your desired Python version
+      python: 3.8
     commands:
       - echo Installing dependencies...
       - pip install --upgrade pip
-      - pip install -r requirements.txt  # Install required packages
+      - pip install -r requirements.txt
 
   pre_build:
     commands:
@@ -22,19 +21,19 @@ phases:
   build:
     commands:
       - echo Running unit tests...
-      - pytest --maxfail=1 --disable-warnings -q  # Run tests with options (modify based on your needs)
+      - pytest --maxfail=1 --disable-warnings -q
 
   post_build:
     commands:
       - echo Build complete!
       - echo Test results:
-      - cat result.log  # If you want to view the output from tests (optional)
+      - cat result.log
 
 artifacts:
   files:
     - '**/*'  # Include all files in the artifacts (e.g., logs, generated files)
-  base-directory: 'tests'  # Only include files from the tests folder, adjust if needed
+  base-directory: 'tests'
 
 cache:
   paths:
-    - '/root/.cache/pip/**/*'  # Cache pip dependencies to speed up future builds
+    - '/root/.cache/pip/**/*'
