@@ -31,7 +31,7 @@ phases:
 
 artifacts:
   files:
-    - '**/*'  # Include all files in the artifacts (e.g., logs, generated files)
+    - '**/*'
   base-directory: 'tests'
 
 cache:
