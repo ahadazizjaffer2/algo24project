@@ -11,25 +11,21 @@ phases:
     runtime-versions:
       python: 3.8  # You can change this to your desired Python version
     commands:
-      # Install dependencies
       - echo Installing dependencies...
       - pip install --upgrade pip
       - pip install -r requirements.txt  # Install required packages
 
   pre_build:
     commands:
-      # Optional: Run any commands you want to perform before build phase
       - echo Pre-build phase complete
 
   build:
     commands:
-      # Run unit tests using pytest
       - echo Running unit tests...
       - pytest --maxfail=1 --disable-warnings -q  # Run tests with options (modify based on your needs)
 
   post_build:
     commands:
-      # Optional: Any post-build tasks, like archiving artifacts or sending notifications
       - echo Build complete!
       - echo Test results:
       - cat result.log  # If you want to view the output from tests (optional)
