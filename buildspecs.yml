@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install dependencies
+      - echo Installing dependencies...
+      - pip install -r requirements.txt
+
+  build:
+    commands:
+      # Run unit tests
+      - echo Running unit tests...
+      - pytest tests/test_algorithms.py
+
+  post_build:
+    commands:
+      # Any additional steps (e.g., notifications)
+      - echo Build complete!
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'tests'  # Include test outputs, if any
+
+cache:
+  paths:
+    - '/root/.cache/pip/**/*'
