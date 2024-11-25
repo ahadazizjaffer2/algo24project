@@ -19,6 +19,9 @@ phases:
     commands:
       - echo Pre-build phase complete
       - export PYTHONPATH=$PYTHONPATH:$(pwd)/algorithms  # Add the algorithms directory to the PYTHONPATH
+      - echo Copying test data files into the working directory...
+      - cp tests/test_cp.txt ./  # Copy test data to the current directory
+      - cp tests/test_im.txt
 
   build:
     commands:
