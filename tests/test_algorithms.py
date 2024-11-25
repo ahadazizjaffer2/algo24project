@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import patch, mock_open
 from io import StringIO
-from closest_pair import visualize_closest_pair
-from int_multiplication import visualize_integer_multiplication
+from algorithms.closest_pair import visualize_closest_pair
+from algorithms.int_multiplication import visualize_integer_multiplication
 
 class AlgorithmsTestCase(unittest.TestCase):
 
