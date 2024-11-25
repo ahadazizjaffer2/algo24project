@@ -24,7 +24,7 @@ def test_index(client):
 def test_algo_closest_pair(client):
     """Test the algorithm closest_pair route with file upload"""
     data = {
-        'input_file': (open('test_input.txt', 'rb'), 'test_input.txt')
+        'input_file': (open('test_cp.txt', 'rb'), 'test_cp.txt')
     }
     response = client.post('/algo/closest_pair', data=data, follow_redirects=True)
     assert response.status_code == 200
@@ -33,7 +33,7 @@ def test_algo_closest_pair(client):
 def test_algo_int_multiplication(client):
     """Test the algorithm int_multiplication route with file upload"""
     data = {
-        'input_file': (open('test_input.txt', 'rb'), 'test_input.txt')
+        'input_file': (open('test_im.txt', 'rb'), 'test_im.txt')
     }
     response = client.post('/algo/int_multiplication', data=data, follow_redirects=True)
     assert response.status_code == 200
