@@ -26,7 +26,7 @@ phases:
   post_build:
     commands:
       - echo Build complete!
-      - echo Test results:
+      - echo Test results
       - cat result.log
 
 artifacts:
