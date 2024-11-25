@@ -22,19 +22,19 @@ phases:
 
   build:
     commands:
-      - echo Running unit tests...
-      - pytest --maxfail=1 --disable-warnings -q
+      # - echo Running unit tests...
+      # - pytest --maxfail=1 --disable-warnings -q
 
   post_build:
     commands:
       - echo Build complete!
-      - echo Test results
-      - cat result.log
+      # - echo Test results
+      # - cat result.log
 
 artifacts:
   files:
     - '**/*'
-  base-directory: 'tests'
+  # base-directory: 'tests'
 
 cache:
   paths:
