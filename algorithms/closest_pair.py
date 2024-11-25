@@ -6,6 +6,7 @@ import shutil
 
 # Use Agg backend for Matplotlib to save images without displaying
 plt.switch_backend('Agg')
+plt.rcParams['font.family'] = 'Arial'
 
 def visualize_closest_pair(file_path, output_dir='static/output_images'):
     points = []
