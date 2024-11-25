@@ -18,6 +18,7 @@ phases:
   pre_build:
     commands:
       - echo Pre-build phase complete
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)/algorithms  # Add the algorithms directory to the PYTHONPATH
 
   build:
     commands:
