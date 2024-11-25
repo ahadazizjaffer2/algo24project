@@ -14,6 +14,8 @@ phases:
       - pip install --upgrade pip
       - pip install -r requirements.txt
       - pip install pytest
+      - export FLASK_APP=app.py
+      - export FLASK_ENV=development
 
   pre_build:
     commands:
@@ -22,10 +24,13 @@ phases:
 
   build:
     commands:
+      - echo Running tests...
+      - pytest  # or `flask run` if you want to start the Flask app for testing purposes
 
   post_build:
     commands:
       - echo Build complete!
+      - echo You can deploy the app now or test further if needed.
 
 artifacts:
   files:
@@ -34,3 +39,4 @@ artifacts:
 cache:
   paths:
     - '/root/.cache/pip/**/*'
+    - '/home/codebuild/.cache/pip/**/*'  # Add this line if caching also applies to this path
